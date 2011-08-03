@@ -1,0 +1,20 @@
+{
+  "name": "s3-post",
+  "version": "0.0.1",
+  
+  "description": "Functions for S3 POSTing and policy signing.",
+  "url": "https://github.com/andrewschaaf/node-s3-post",
+  
+  "main": "lib/s3-post.js",
+  
+  "dependencies": {
+    "tafa-misc-util": "=0.1.3"
+  },
+  
+  "author": "Andrew Schaaf <andrew@andrewschaaf.com> (http://andrewschaaf.com)",
+  
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andrewschaaf/node-s3-post.git"
+  }
+}
