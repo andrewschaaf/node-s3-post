@@ -19,7 +19,7 @@ signPolicy = (secretKey, policy) ->
   }
 
 
-postToS3 = ({AWSAccessKeyId, policy64, signature64, bucket, key, data, boundary, customUrl}, callback) ->
+postToS3 = ({AWSAccessKeyId, policy64, signature64, bucket, key, data, boundary, customUrl}, callback=(->)) ->
   
   if customUrl
     {protocol, hostname, port} = url.parse customUrl
