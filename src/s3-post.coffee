@@ -1,4 +1,5 @@
 
+url = require 'url'
 https = require 'https'
 crypto = require 'crypto'
 {joinBuffers} = require 'tafa-misc-util'
@@ -18,7 +19,17 @@ signPolicy = (secretKey, policy) ->
   }
 
 
-postToS3 = ({AWSAccessKeyId, policy64, signature64, bucket, key, data, boundary}, callback) ->
+postToS3 = ({AWSAccessKeyId, policy64, signature64, bucket, key, data, boundary, customUrl}, callback) ->
+  
+  if customUrl
+    {protocol, hostname, port} = url.parse customUrl
+    assert.equal protocol, "https:", "customUrl must be https://"
+    host = hostname
+    port or= 443
+  else
+    host = "#{bucket}.s3.amazonaws.com"
+    port = 443
+  
   
   boundary or= '----------R46EARkAg4SAXSjufGsb6m' # chosen by fair dice roll.
                                                   # guaranteed to be random.
@@ -45,7 +56,8 @@ postToS3 = ({AWSAccessKeyId, policy64, signature64, bucket, key, data, boundary}
   
   #### POST
   options = {
-    host: "#{bucket}.s3.amazonaws.com"
+    host: host
+    port: port
     path: '/'
     method: 'POST'
     headers: {
