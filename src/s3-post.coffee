@@ -23,7 +23,8 @@ postToS3 = ({AWSAccessKeyId, policy64, signature64, bucket, key, data, boundary,
   
   if customUrl
     {protocol, hostname, port} = url.parse customUrl
-    assert.equal protocol, "https:", "customUrl must be https://"
+    if protocol != "https:"
+      return callback new Error "customUrl must be https://"
     host = hostname
     port or= 443
   else
