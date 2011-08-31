@@ -1,6 +1,6 @@
 {
   "name": "s3-post",
-  "version": "0.0.2",
+  "version": "0.0.3",
   
   "description": "Functions for S3 POSTing and policy signing.",
   "url": "https://github.com/andrewschaaf/node-s3-post",
