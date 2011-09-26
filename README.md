@@ -7,7 +7,7 @@ If you have a signed policy, Amazon S3 lets you POST without requiring the accou
 {signPolicy} = require 's3-post'
 
 {signature64, policy64} = signPolicy secretKey, {
-"expiration": "2999-12-30T12:00:00.000Z",
+  "expiration": "2999-12-30T12:00:00.000Z",
   "conditions": [
     {"bucket": "takin-mah-bukket"},
     ["starts-with", "$key", ""]
