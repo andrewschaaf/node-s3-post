@@ -2,7 +2,7 @@
 url = require 'url'
 https = require 'https'
 crypto = require 'crypto'
-{joinBuffers} = require 'tafa-misc-util'
+{joinBuffers, readText} = require 'tafa-misc-util'
 
 
 signPolicy = (secretKey, policy) ->
