@@ -19,7 +19,7 @@ signPolicy = (secretKey, policy) ->
   }
 
 
-postToS3 = ({AWSAccessKeyId, policy64, signature64, bucket, key, data, boundary, customUrl}, callback=(->)) ->
+postToS3 = ({AWSAccessKeyId, policy64, signature64, bucket, key, data, boundary, customUrl, ca}, callback=(->)) ->
   
   if customUrl
     {protocol, hostname, port} = url.parse customUrl
@@ -67,6 +67,8 @@ postToS3 = ({AWSAccessKeyId, policy64, signature64, bucket, key, data, boundary,
       'Content-Length': req_body.length
     }
   }
+  if ca
+    options.ca = ca
   req = https.request options, (res) ->
     if 200 <= res.statusCode < 300
       callback null
